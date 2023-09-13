@@ -1,0 +1,66 @@
+#By: Nathaniel Ryan
+#Can you tell that Python is not my primary language
+
+import face_recognition
+
+#class of images of people belonging to certain lists, not functional
+class People:
+    person
+
+#alarm class to raise alarm and inform person who triggered the alarm that they are not allowed to be there
+#use text to speech and lights.
+class Alarm:
+    action
+
+#permit class for people who are allowed to be there, 
+#inform them of such, then go back to patrolling without bothering them again
+class Permit:
+    action
+
+#uses text to speech to request the person to halt, not functional
+class RequestThemToHalt:
+    action
+
+#Push request to app user if person is allowed to be there, not functional
+class QueryUser:
+    action
+
+#action class for all behaviours that actionlists inherit
+class Actions:
+    def __init__(self, no_of_acts):
+        self.n = no_of_acts
+        self.acts = [0 for i in range(no_of_acts)]
+        
+
+
+#White list, not functional
+class WhiteListActions(Actions):
+    def __init__(self):
+        Actions.__init__(self,1)
+        
+    Permit
+
+#Grey list, not functional
+class GreyListActions(Actions):
+    def __init__(self):
+        Actions.__init__(self,2)
+
+    RequestThemToHalt
+    QueryUser
+
+#Black list, not functional
+class BlackListActions(Actions):
+    def __init__(self):
+        Actions.__init__(self,1)
+
+    Alarm
+
+#add actions to action lists, not functional
+class AddAction:
+    action
+
+#remove actions from action lists, not functional
+class RemoveAction:
+    action
+
+#Create 5 people, one for each plausible combination of actions
