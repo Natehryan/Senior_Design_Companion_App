@@ -1,6 +1,9 @@
 #By: Nathaniel Ryan
 #Can you tell that Python is not my primary language
 
+# Import the required module for text 
+# to speech conversion
+import pyttsx3
 #import face_recognition
 
 #class of images of people belonging to certain lists, not functional
