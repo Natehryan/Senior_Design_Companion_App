@@ -10,6 +10,11 @@ import pyttsx3
 #class People:
  #   person
 
+ # initialize Text-to-speech engine
+engine = pyttsx3.init()
+  
+
+
 class Action:
     def __init__(self, act):
         self.act = act
@@ -18,15 +23,30 @@ class Action:
 #use text to speech and lights.
 class Alarm(Action):
     action
+    # convert this text to speech
+    text = "You are Not Permitted here"
+    engine.say(text)
+    # play the speech
+    engine.runAndWait()
 
 #permit class for people who are allowed to be there, 
 #inform them of such, then go back to patrolling without bothering them again
 class Permit(Action):
     action
+    # convert this text to speech
+    text = "You are Permitted here"
+    engine.say(text)
+    # play the speech
+    engine.runAndWait()
 
 #uses text to speech to request the person to halt, not functional
 class RequestThemToHalt(Action):
     action
+    # convert this text to speech
+    text = "Halt"
+    engine.say(text)
+    # play the speech
+    engine.runAndWait()
 
 #Push request to app user if person is allowed to be there, not functional
 class QueryUser(Action):
