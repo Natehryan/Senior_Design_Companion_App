@@ -1,7 +1,19 @@
-class Profiles(list, image, name):
-    def __init__(self, list, image, name):
-        self.list = list
+import mysql.connector
+
+class Profiles(actList, image, name):
+    def __init__(self, actList, image, name):
+        self.actList = actList
         self.image = image
         self.name = name
 
 
+
+profdb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword"
+)
+
+mycursor = profdb.cursor()
+
+mycursor.execute("CREATE DATABASE mydatabase")
