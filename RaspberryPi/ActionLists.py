@@ -21,12 +21,8 @@ class Action:
 
 #alarm class to raise alarm and inform person who triggered the alarm that they are not allowed to be there
 #use text to speech and lights.
-<<<<<<< Updated upstream
-class Alarm(Action):
-    action
-=======
 class Alarm():
->>>>>>> Stashed changes
+
     # convert this text to speech
     text = "You are Not Permitted here"
     engine.say(text)
@@ -35,34 +31,24 @@ class Alarm():
 
 #permit class for people who are allowed to be there, 
 #inform them of such, then go back to patrolling without bothering them again
-class Permit(Action):
-    action
-=======
 class Permit():
->>>>>>> Stashed changes
     # convert this text to speech
     text = "You are Permitted here"
     engine.say(text)
     # play the speech
     engine.runAndWait()
-<<<<<<< Updated upstream
 
-#uses text to speech to request the person to halt, not functional
-class RequestThemToHalt(Action):
-    action
-=======
-    # mark person as fine
-    # go back to normal patrolling
     
 
 #uses text to speech to request the person to halt, not functional
 class RequestThemToHalt():
->>>>>>> Stashed changes
     # convert this text to speech
     text = "Halt"
     engine.say(text)
     # play the speech
     engine.runAndWait()
+    #wait for update from user
+
 
 #Push request to app user if person is allowed to be there, not functional
 class QueryUser(Action):
