@@ -8,12 +8,12 @@ class Profiles(actList, image, name):
 
 
 
-profdb = mysql.connector.connect(
+profiledb = mysql.connector.connect(
   host="localhost",
   user="yourusername",
   password="yourpassword"
 )
 
-mycursor = profdb.cursor()
+mycursor = profiledb.cursor()
 
-mycursor.execute("CREATE DATABASE mydatabase")
+mycursor.execute("CREATE DATABASE Profiles")
