@@ -1,6 +1,7 @@
 #By: Nathaniel Ryan
 #Can you tell that Python is not my primary language
 
+
 # Import the required module for text 
 # to speech conversion
 import pyttsx3
@@ -76,11 +77,14 @@ def QueryUser():
     #else
 
 
+
 #action class for all behaviours
 class ActionList:
     #initialize the class with a dictionary of actions, all set to false
     def __init__(self):
+
         self.acts = {'QueryUser':'false', 'Alarm':'false', 'RequestThemToHalt':'false', 'Permit':'false'}
+
 
     #add actions to action lists, not functional, should just update the relevant dictionary action
     def AddAction(self, act):
