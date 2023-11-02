@@ -110,5 +110,4 @@ greyList = ActionList()
 
 whiteList.AddAction(Permit)
 blackList.AddAction(Alarm)
-
-Alarm()
+Alarm
