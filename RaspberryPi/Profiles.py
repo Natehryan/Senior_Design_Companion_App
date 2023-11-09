@@ -1,3 +1,5 @@
+from PIL import Image
+import numpy as np
 
 class Profiles:
     def __init__(self, id, actList, image, name, description, active):
@@ -13,25 +15,68 @@ class Profiles:
 
     def setActive(active):
         active = True
+
+    def getImage(self):
+        return self.image
     
+    def getDescription(self):
+        return self.description
+    
+    def getName(self):
+        return self.name
+
+    def getID(self):
+        return self.id
+    
+    def getActList(self):
+        return self.actList
+
+    def getActive(self):
+        return self.active
+    
+    
+    def convertImage(self, image):
+        img = Image.open(image)
+        ary = np.array(img)
+
+        r,g,b = np.split(ary,3,axis=2)
+        r=r.reshape(-1)
+        g=r.reshape(-1)
+        b=r.reshape(-1)
+
+        bitmap = list(map(lambda x: 0.299*x[0]+0.587*x[1]+0.114*x[2], 
+        zip(r,g,b)))
+        bitmap = np.array(bitmap).reshape([ary.shape[0], ary.shape[1]])
+        bitmap = np.dot((bitmap > 128).astype(float),255)
+        im = Image.fromarray(bitmap.astype(np.uint8))
+        im.save(image)
+
+
     def writeEntry(id, actList, image, name, description, active):
         #if it is not already there write the entry, otherwise change entry
+        with open('profiles.txt', 'a') as f:
+            f.write("")
         lines = set(open('profiles.txt').readlines())
         inLine = False
-        newLine = [id, ', ', actList, ', ', image,  ', ', name,  ', ', description,  ', ', active]
+        
+        newLine = [str(id), ', ', actList, ', ', str(image),  ', ', name,  ', ', description,  ', ', active]
     
         for line in lines:
             if str(id) in line:
-                line = line.replace(newLine)
+                line = line.replace(line, str(newLine))
                 inLine = True
         
         if inLine == False:
             with open('profiles.txt', 'a') as f:
-                f.write(newLine)
+                for word in newLine:
+                    f.write(str(word))
                 f.write('\n')
         else: 
             with open('profiles.txt', 'w') as f:
-                f.write(lines)
-                f.write('\n')
+                for line in lines:
+                    f.write(line)
+                    f.write('\n')
         
-p = Profiles(id, "whiteList", 'image', "genericus", "for the glory of Rome", True)
+p = Profiles(id, "whiteList", 'handsome-cheerful-man-with-happy-smile_176420-18028.png', "genericus", "for the glory of Rome", True)
+#p.setImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
+p.writeEntry("whiteList", p.getImage(), "genericus", "for the glory of Rome", True)
