@@ -1,11 +1,5 @@
-import mysql.connector
 
-actList = ''
-image = ''
-name = ''
-description = ''
-active = True
-class Profiles(id, actList, image, name, description, active):
+class Profiles:
     def __init__(self, id, actList, image, name, description, active):
         self.id = id
         self.actList = actList
@@ -40,17 +34,4 @@ class Profiles(id, actList, image, name, description, active):
                 f.write(lines)
                 f.write('\n')
         
-        
-
-
-
-
-profiledb = mysql.connector.connect(
-  host="localhost",
-  user="yourusername",
-  password="yourpassword"
-)
-
-mycursor = profiledb.cursor()
-
-mycursor.execute("CREATE DATABASE Profiles")
+p = Profiles(id, "whiteList", 'image', "genericus", "for the glory of Rome", True)

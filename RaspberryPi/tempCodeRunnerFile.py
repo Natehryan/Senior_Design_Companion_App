@@ -1,1 +1,1 @@
-import pyttsx3
+p = Profiles(id, "whiteList", 'image', "genericus", "for the glory of Rome", True)
