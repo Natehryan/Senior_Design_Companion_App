@@ -37,16 +37,16 @@ class Profiles:
     
     def convertImage(self, image):
         img = Image.open(image)
-        ary = np.array(img)
+        array = np.array(img)
 
-        r,g,b = np.split(ary,3,axis=2)
+        r,g,b = np.split(array,3,axis=2)
         r=r.reshape(-1)
         g=r.reshape(-1)
         b=r.reshape(-1)
 
         bitmap = list(map(lambda x: 0.299*x[0]+0.587*x[1]+0.114*x[2], 
         zip(r,g,b)))
-        bitmap = np.array(bitmap).reshape([ary.shape[0], ary.shape[1]])
+        bitmap = np.array(bitmap).reshape([array.shape[0], array.shape[1]])
         bitmap = np.dot((bitmap > 128).astype(float),255)
         im = Image.fromarray(bitmap.astype(np.uint8))
         im.save(image)
