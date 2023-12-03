@@ -40,9 +40,8 @@ class Profiles:
 
         data = np.array(image)
 
-        #img2 = Image.fromarray(data)
-        load_img_rz = np.array(Image.open(image).resize((200,200)))
-        Image.fromarray(load_img_rz).save(image)
+        rsz_img = np.array(Image.open(image).resize((200,200)))
+        Image.fromarray(rsz_img).save(image)
 
 
     def writeEntry(id, actList, image, name, description, active):
@@ -73,5 +72,5 @@ class Profiles:
            
 
 p = Profiles(id, "whiteList", 'handsome-cheerful-man-with-happy-smile_176420-18028.png', "genericus", "for the glory of Rome", True)
-p.convertImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
+#p.convertImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
 p.writeEntry("whiteList", p.getImage(), "genericus", "for the glory of Rome", True)
