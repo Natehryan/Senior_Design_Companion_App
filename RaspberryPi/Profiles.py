@@ -39,17 +39,10 @@ class Profiles:
         img = Image.open(image)
         ary = np.array(img)
 
-        r,g,b = np.split(ary,3,axis=2)
-        r=r.reshape(-1)
-        g=r.reshape(-1)
-        b=r.reshape(-1)
-
-        bitmap = list(map(lambda x: 0.299*x[0]+0.587*x[1]+0.114*x[2], 
-        zip(r,g,b)))
-        bitmap = np.array(bitmap).reshape([ary.shape[0], ary.shape[1]])
-        bitmap = np.dot((bitmap > 128).astype(float),255)
-        im = Image.fromarray(bitmap.astype(np.uint8))
-        im.save(image)
+        for i in range(img.size[0]):    # For every pixel:
+          for j in range(img.size[1]):
+            ary[i,j] = (i, j, 100) # Set the colour accordingly
+        img.save(image)
 
 
     def writeEntry(id, actList, image, name, description, active):
@@ -78,5 +71,5 @@ class Profiles:
                     f.write('\n')
         
 p = Profiles(id, "whiteList", 'handsome-cheerful-man-with-happy-smile_176420-18028.png', "genericus", "for the glory of Rome", True)
-#p.setImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
+p.convertImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
 p.writeEntry("whiteList", p.getImage(), "genericus", "for the glory of Rome", True)
