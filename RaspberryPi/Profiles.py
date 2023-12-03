@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+from numpy import asarray
 
 class Profiles:
     def __init__(self, id, actList, image, name, description, active):
@@ -36,19 +37,13 @@ class Profiles:
     
     def convertImage(self, image):
         img = Image.open(image)
-        array = np.array(img)
 
-        r,g,b = np.split(array,3,axis=2)
-        r=r.reshape(-1)
-        g=r.reshape(-1)
-        b=r.reshape(-1)
+        data = np.array(image)
 
-        bitmap = list(map(lambda x: 0.299*x[0]+0.587*x[1]+0.114*x[2], 
-        zip(r,g,b)))
-        bitmap = np.array(bitmap).reshape([array.shape[0], array.shape[1]])
-        bitmap = np.dot((bitmap > 128).astype(float),255)
-        im = Image.fromarray(bitmap.astype(np.uint8))
-        im.save(image)
+        #img2 = Image.fromarray(data)
+        load_img_rz = np.array(Image.open(image).resize((200,200)))
+        Image.fromarray(load_img_rz).save(image)
+
 
     def writeEntry(id, actList, image, name, description, active):
         #if it is not already there write the entry, otherwise change entry
@@ -78,5 +73,5 @@ class Profiles:
            
 
 p = Profiles(id, "whiteList", 'handsome-cheerful-man-with-happy-smile_176420-18028.png', "genericus", "for the glory of Rome", True)
-#p.setImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
+p.convertImage('handsome-cheerful-man-with-happy-smile_176420-18028.png')
 p.writeEntry("whiteList", p.getImage(), "genericus", "for the glory of Rome", True)
